@@ -1,0 +1,10 @@
+#include <bits/stdc++.h>
+    int heightChecker(vector<int>& heights) {
+        vector<int> v1 = heights;
+        sort(v1.begin(), v1.end());
+        int count = 0;
+        for(int i=0; i<v1.size(); i++){
+            if(v1[i]!=heights[i]) count++;
+        }
+        return count;
+    }
