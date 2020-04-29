@@ -1,0 +1,26 @@
+class Solution {
+public:
+    #include <climits>
+    int dominantIndex(vector<int>& nums) {
+        if(nums.size()==0) return -1;
+        if(nums.size()==1) return 0;
+        int largest = INT_MIN;
+        int second = INT_MIN;
+        int lIndex = -1;
+        for(int i=0; i<nums.size(); i++){
+            if(nums[i]>largest){
+                second = largest;
+                largest = nums[i];
+                lIndex = i;
+            }
+            else if(nums[i]>second){
+                second = nums[i];
+            }
+            else continue;
+        }
+
+        if(largest>=2*second) return lIndex;
+        else return -1;
+        
+    }
+};
