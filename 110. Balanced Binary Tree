@@ -1,0 +1,26 @@
+class Solution {
+public:
+    #include <bits/stdc++.h>
+    pair<bool,int> isBalancedHelper(TreeNode* root){
+    if(root==NULL){
+        pair<bool,int> p;
+        p.first=true;
+        p.second=0;
+        return p;
+    }
+    
+    pair<bool,int> left=isBalancedHelper(root->left);
+    pair<bool,int> right=isBalancedHelper(root->right);
+    
+    pair<bool,int> ans;
+    
+    ans.first=((left.first==true&&right.first==true)?((left.second-right.second<2&&left.second-right.second>-2)?true:false):false);
+    
+    ans.second=1+max(left.second,right.second);
+    return ans;
+    }
+    
+    bool isBalanced(TreeNode* root) {
+        return isBalancedHelper(root).first;
+    }
+};
