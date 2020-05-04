@@ -3,6 +3,24 @@ Memory Usage: 6.3 MB, less than 100.00% of C++ online submissions for Complement
 
 class Solution {
 public:
+    int findComplement(int num) {
+        int ans = 0;
+        int p = 0;
+        while (num != 0){
+            if (num % 2 == 0)
+                ans += pow(2,p);
+            p++;
+            num /= 2;
+        }
+        return ans;
+    }
+};
+
+BETTER APPROACH
+    
+    
+class Solution {
+public:
     #include<bits/stdc++.h>
     int bitwiseComplement(int num) {
         if(num==0) return 1;
