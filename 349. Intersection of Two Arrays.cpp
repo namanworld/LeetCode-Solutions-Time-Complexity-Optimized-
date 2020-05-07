@@ -20,3 +20,24 @@ public:
         return ans;
     }
 };
+
+
+BETTER APPROACH
+class Solution {
+public:
+    #include <bits/stdc++.h>
+    vector<int> intersection(vector<int>& nums1, vector<int>& nums2) {
+        unordered_map<int, int> map;
+        for(int n:nums1){
+            map[n]++;
+        }
+        vector<int> ans;
+        for(int n:nums2){
+            if(map.count(n)!=0){
+                ans.push_back(n);
+                map.erase(n);
+            }
+        }
+        return ans;
+    }
+};
