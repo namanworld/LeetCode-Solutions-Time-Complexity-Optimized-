@@ -30,3 +30,30 @@ public:
         return dec;                
     }
 };
+
+BETTER APPROACH
+
+class Solution {
+public:
+
+    int getSum(int a, int b) {
+        long long carry;
+         while (b != 0) {
+            carry = a & b;
+            a = a ^ b;
+            b = ((carry & 0xffffffff) << 1); // limited to 32 bits
+        }
+        return a;
+    }
+    
+//     No use but  just so you know
+    int sub(int a ,int b){
+        while(b>0){
+            int borrow  = (~a)&b;
+            a = a^b;
+            b = borrow<<1;
+        }
+        return a;
+    }
+    
+};
