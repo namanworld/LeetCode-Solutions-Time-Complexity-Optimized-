@@ -1,0 +1,16 @@
+class Solution {
+public:
+    #include <bits/stdc++.h>
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int> twoSum;
+        vector<int> res;
+        for(int i=0; i<nums.size(); i++){
+            if(twoSum.count(target-nums[i])>0){
+                res.push_back(i);
+                res.push_back(twoSum[target-nums[i]]);
+            }
+            else twoSum[nums[i]] = i;
+        }
+        return res;
+    }
+};
