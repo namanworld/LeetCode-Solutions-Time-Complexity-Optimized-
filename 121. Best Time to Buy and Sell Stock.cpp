@@ -18,3 +18,46 @@ public:
         return max(result,maxVal-minVal);
     }
 };
+
+
+NAIVE APPROACH
+class Solution {
+public:
+    #include <bits/stdc++.h>
+    int maxProfit(vector<int>& prices) {
+        int currMin = INT_MAX;
+        int currMax = INT_MIN;
+        int currProfit = 0;
+        for(int i=0; i<prices.size(); i++){
+            if(currMin > prices[i]) {
+                currMin = prices[i];
+                currMax = INT_MIN;
+            }
+            if(currMin != INT_MAX && prices[i] > currMax){
+                currMax = prices[i];
+            }
+            if(currMax - currMin > currProfit) currProfit = currMax - currMin;
+        }
+        if(currMax != INT_MIN) return currProfit;
+        else return 0;
+    }
+};
+
+O(N) APPROACH
+class Solution {
+public:
+    #include <bits/stdc++.h>
+    int maxProfit(vector<int>& prices) {
+        int currMin = INT_MAX;
+        int currProfit = 0;
+        for(int i=0; i<prices.size(); i++){
+            if(currMin > prices[i]) {
+                currMin = prices[i];
+            }
+            else if(prices[i] > currProfit + currMin){
+                currProfit = prices[i] - currMin;
+            }
+        }
+        return currProfit;
+    }
+};
