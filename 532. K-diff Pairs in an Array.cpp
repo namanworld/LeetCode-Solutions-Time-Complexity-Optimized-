@@ -24,3 +24,22 @@ public:
         return count;
     }
 };
+
+
+BETTER:
+#include <bits/stdc++.h>
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+        if(nums.size()==0) return 0;
+        if(k<0) return 0;
+        unordered_map<int,int> find;
+        for(int num:nums) find[num]++;
+        
+        int count = 0;
+        for(auto x:find){
+            if((k==0&&x.second>1) || (k!=0&&find.count(x.first+k))) count++;
+        }
+        return count;
+    }
+};
