@@ -26,3 +26,18 @@ public:
         return -1;
     }
 };
+
+
+ALTERNATE:
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int sum = 0, leftSum = 0;
+        sum = accumulate(nums.begin(), nums.end(), sum);
+        for(int i=0; i<nums.size(); i++){
+            if(leftSum == sum - leftSum - nums[i]) return i;
+            leftSum += nums[i];
+        }
+        return -1;
+    }
+};
