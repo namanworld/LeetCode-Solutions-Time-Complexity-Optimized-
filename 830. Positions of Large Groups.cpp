@@ -24,3 +24,20 @@ public:
         return res;
     }
 };
+
+BETTER:
+class Solution {
+public:
+    vector<vector<int>> largeGroupPositions(string S) {
+        if(S.size()<=2) return {};
+        vector<vector<int>> res;
+        for(int i=0, j=0; i<S.size(); i++){
+            if(i==S.size()-1 || S[i]!=S[i+1]){
+                if(i-j+1>=3) res.push_back({j,i});
+                j = i+1;
+            }
+        }
+        
+        return res;
+    }
+};
