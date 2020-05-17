@@ -17,3 +17,13 @@ public:
         return dp[n];
     }
 };
+
+
+#include <cmath>
+class Solution {
+public:
+    int fib(int N) {
+        double fib_f = 1.0*(1+sqrt(5))/2;
+        return (int)round(pow(fib_f, N)/sqrt(5));
+    }
+};
