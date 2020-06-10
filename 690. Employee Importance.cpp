@@ -14,3 +14,22 @@ public:
         return importance;
     }
 };
+
+
+class Solution {
+public:
+    unordered_map<int, Employee*> emap;
+    int getImportance(vector<Employee*> employees, int id) {
+        for(auto e:employees) emap[e->id]=e;
+        return dfs(id);
+    }
+    
+    int dfs(int id){
+        Employee* e = emap[id];
+        int ans = e->importance;
+        for(int sid:e->subordinates){
+            ans+=dfs(sid);
+        }
+        return ans;
+    }
+};
