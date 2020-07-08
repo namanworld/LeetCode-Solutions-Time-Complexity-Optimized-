@@ -1,25 +1,21 @@
 class Solution {
 public:
-    int maxPathSum(TreeNode* root) 
-    {
-        int max = -999999;        
-        partialMaxPathSum(root, max);
-        return max;
-    }
+    int ans;
     
-    int  partialMaxPathSum(TreeNode* root, int& max) 
-    {
-        if(root == nullptr)
-        {
-            return 0;    
-        }
-      
-        int left = partialMaxPathSum(root->left, max);
-        int right = partialMaxPathSum(root->right, max);        
+    int helper(TreeNode* root){
+        if(!root) return 0;
         
-        max = std::max(left+right+root->val, max);
-        int ret = root->val + std::max(left, right);
-        return ret > 0 ? ret : 0;        
+        int x = helper(root->left);
+        int y = helper(root->right);
+        
+        ans = max(ans, root->val + x + y);
+        
+        return max(0, root->val + max(x, y));
     }
     
+    int maxPathSum(TreeNode* root) {
+        ans = INT_MIN;
+        helper(root);
+        return ans;
+    }
 };
